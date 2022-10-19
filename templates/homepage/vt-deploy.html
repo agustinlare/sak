@@ -1,0 +1,25 @@
+{{ define "homepage/vt-deploy.html" }}
+<header>
+  <div class="container">
+    <h2>Upload Veritran Release</h2>
+    <h4>Step 1: Drag and Drop zip file</h4>
+    <form action="/vt-deploy" 
+          class="dropzone"
+          id="upload-form"></form>
+    <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
+    <script>var myDropzone = new Dropzone("upload-form", {url: "/vt-deploy"});</script>
+    <p></p>
+    <h4>Step 2: Insert password for extract and upload</h5>
+    <div class="d-flex justify-content-between align-items-center">
+      <div class="btn-group">
+        <form action="/vt-upload" method="post">
+        <input type="password" name="upload_password" style="float: left">
+        <button type="submit" class="btn btn-sm btn-outline-secondary">Go</button>
+        </form>
+      </div>
+    </div>
+    <br>
+    {{ template "layouts/messages.html" .}}
+  </div>
+</header>
+{{ end }}

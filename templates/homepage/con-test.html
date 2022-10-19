@@ -1,0 +1,24 @@
+{{ define "homepage/con-test.html" }}
+<header>
+  <div class="container">
+    <h2>Connections</h2>
+    <form action="/con-test" method="post">
+      <div class="form-group">
+        <label for="ipcheck">IP Address reachability</label><br>
+        <input type="text" name="ipcheck" class="form-control" id="ipcheck" placeholder="10.10.10.10 (default port 443) or 10.10.10.10:80">
+      </div>
+      <div class="form-group">
+        <label for="dns">DNS Resolver</label><br>
+        <input type="text" name="dns" class="form-control" id="dns" aria-describedby="dnsName" placeholder="google.com">
+      </div>
+      <div class="form-group">
+        <label for="mongodb">Test MongoDB Connection</label><br>
+        <input type="text" name="mongodb" class="form-control" id="mongodb" aria-describedby="connectionString" placeholder="mongodb+srv://&lt;USER&gt;:&lt;PASSWORD&gt;@clave-&lt;ENV&gt;-cluster.vfjzy.mongodb.net">
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button><br>
+    </form>
+    <br>
+    {{ template "layouts/messages.html" .}}
+  </div>
+</header>
+{{ end }}

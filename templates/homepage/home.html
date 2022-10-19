@@ -1,0 +1,111 @@
+{{ define "homepage/home.html" }}
+<!-- Masthead -->
+<header>
+  <div class="container">
+    <div class="row">
+      <!-- HEALTHY -->
+      <div class="col-md-4">
+        <div class="card mb-4 box-shadow">
+          <div class="card-body">
+            <h4>Health</h4>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <form action="/health">
+                  <button type="submit" class="btn btn-sm btn-outline-secondary">Go</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- PING -->
+      <div class="col-md-4">
+        <div class="card mb-4 box-shadow">
+          <div class="card-body">
+            <h4>Ping</h4>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <form action="/ping">
+                  <button type="submit" class="btn btn-sm btn-outline-secondary">Go</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- UNHEALTH -->
+      <div class="col-md-4">
+        <div class="card mb-4 box-shadow">
+          <div class="card-body">
+            <h4>Unhealthy</h4>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <form action="/unhealth">
+                  <button type="submit" class="btn btn-sm btn-outline-secondary">Go</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- PASSWORD -->
+      <div class="col-md-4">
+        <div class="card mb-4 box-shadow">
+          <div class="card-body">
+            <h4>Passwords</h4><br><br>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <form action="/1password">
+                  <button type="submit" class="btn btn-sm btn-outline-secondary">Go</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- STRESSTEST -->
+      <div class="col-md-4">
+        <div class="card mb-4 box-shadow">
+          <div class="card-body">
+            <h4>Stress script</h4>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <div class="custom-input-file">
+                  <form id="form" enctype="multipart/form-data" action="/upload" method="POST">
+                    <input class="input file-input" type="file" name="file"/>
+                  </form>
+                  <br>
+                  <button type="submit" class="btn btn-sm btn-outline-secondary">Go</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Switch health check status -->
+      <div class="col-md-4">
+        <div class="card mb-4 box-shadow">
+          <div class="card-body">
+            <h4>Switch Healthcheck</h4>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <div class="custom-input-file">
+                  <form method="post"> 
+                    {{ if .healthstatus }}
+                    <button name="healthswitch" value="healthswitchva" class="btn btn-success btn-sm" disabled>Status</button><br>
+                    {{else}}
+                    <button name="healthswitch" value="healthswitchva" class="btn btn-danger btn-sm" disabled>Status</button><br>
+                    {{end}}
+                    <br>
+                    <button type="submit"  name="healthswitch-btn" value="true" class="btn btn-sm btn-outline-secondary">Go</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+{{ end }}

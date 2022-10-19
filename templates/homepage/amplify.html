@@ -1,0 +1,75 @@
+{{ define "homepage/amplify.html" }}
+<header>
+  <form method="post">
+    <div class="container">
+      <h2>Amplify Environment</h2>
+      <br>
+      <h4>Select action</h4>
+      {{ if .act_selection }}
+      {{ if eq .act_selection "edit" }}
+      <input type="radio" id="edit" name="action" value="edit" onchange="this.form.submit()" checked>
+      <label for="edit">Edit</label>
+      <input type="radio" id="new" name="action" value="new" onchange="this.form.submit()">
+      <label for="new">New</label>
+      {{ else }}
+      <input type="radio" id="edit" name="action" value="edit" onchange="this.form.submit()">
+      <label for="edit">Edit</label>
+      <input type="radio" id="new" name="action" value="new" onchange="this.form.submit()" checked>
+      <label for="new">New</label>
+      {{ end }}
+      {{ else }}
+      <input type="radio" id="edit" name="action" value="edit" onchange="this.form.submit()">
+      <label for="edit">Edit</label>
+      <input type="radio" id="new" name="action" value="new" onchange="this.form.submit()">
+      <label for="new">New</label>
+      {{ end }}
+      <!-- ENVIROMENT -->
+      <br><br>
+      {{ if ne .act_selection "new" }}
+      <h4>Select enviroments</h4>
+      <select class="form-select" name="env_selection" aria-label="size 3 select example" onchange="this.form.submit()">
+      {{ if .env }}
+        <option disabled selected>Select enviroments</option>
+        {{ range .env }}
+        <option>{{ . }}</option>
+        {{ end }}
+      {{ else }}
+        <option selected>{{ .env_selected }}</option>
+      {{ end }}
+      </select>
+      <!-- VARS -->
+      <br><br>
+      <h4>Select variable</h4>
+      <select class="form-select" name="var_selection" aria-label="size 3 select example">
+      {{ if .vars }}
+        <option disabled selected>Select variable</option>
+        {{ range .vars }}
+        <option>{{ .Attributes.Key }}</option>
+        {{ end }}
+      {{ else }}
+        {{ if .var_selected }}
+        <option selected>{{ .var_selected }}</option>
+        {{ else }}
+        <option disabled selected>Select enviroment first</option>
+        {{ end }}
+      {{ end }}
+      </select>
+      {{ end }}
+      <!-- INPUT -->
+      <br><br>
+      <h5>Insert value to update</h4>
+      <input type="text" name="var_update">
+      <br>
+      <br>
+      <h5>Service secret</h4>
+      <input type="text" name="secret">
+      <br>
+      <!-- BUTTON -->
+      <br>
+      <button type="submit" value="true" class="btn btn-primary">Update</button>
+      <button type="submit" formmethod="get" class="btn btn-outline-info">Clear filters</button>
+      {{ template "layouts/messages.html" .}}
+    </div>
+  </form>
+</header>
+{{ end }}
