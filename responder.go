@@ -17,11 +17,6 @@ type response struct {
 	Message  string `json:"message"`
 }
 
-var (
-	InfoLogger  *log.Logger
-	ErrorLogger *log.Logger
-)
-
 func reply(c *gin.Context, b bool, s string) {
 	code := http.StatusOK
 

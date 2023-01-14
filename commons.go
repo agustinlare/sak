@@ -18,11 +18,36 @@ type Links struct {
 }
 
 type Config struct {
-	Token string `json:"token"`
-	Env   []struct {
+	Token        string `json:"token"`
+	Secretstring string `json:"secretstring"`
+	Postgres     struct {
+		Host     string `json:"host"`
+		Port     int    `json:"port"`
+		User     string `json:"user"`
+		Password string `json:"password"`
+		Dbname   string `json:"dbname"`
+		Table    string `json:"table"`
+	} `json:"postgres"`
+	Lambda struct {
+		Dev struct {
+			Ec2Stop  string `json:"ec2_stop"`
+			Ec2Start string `json:"ec2_start"`
+			RdsStop  string `json:"rds_stop"`
+			RdsStart string `json:"rds_start"`
+			Asc      string `json:"asc"`
+		} `json:"dev"`
+		Qa struct {
+			Ec2Stop  string `json:"ec2_stop"`
+			Ec2Start string `json:"ec2_start"`
+			RdsStop  string `json:"rds_stop"`
+			RdsStart string `json:"rds_start"`
+			Asc      string `json:"asc"`
+		} `json:"qa"`
+	} `json:"lambda"`
+	Terraform []struct {
 		Name   string `json:"name"`
 		Varset string `json:"varset"`
-	} `json:"env"`
+	} `json:"terraform"`
 	Links []struct {
 		Name string `json:"name"`
 		Href string `json:"href"`
@@ -103,7 +128,7 @@ func PrettyPrint(i interface{}) string {
 }
 
 func getConfig() Config {
-	content, err := ioutil.ReadFile(os.Getenv("TERRAFORM_CONFIG_FILE"))
+	content, err := ioutil.ReadFile(os.Getenv("SAK_CONFIG_FILE"))
 
 	if err != nil {
 		log.Fatal("Error when opening file: ", err)
@@ -111,7 +136,6 @@ func getConfig() Config {
 
 	var payload Config
 	err = json.Unmarshal(content, &payload)
-
 	if err != nil {
 		log.Fatal("Error during Unmarshal(): ", err)
 	}

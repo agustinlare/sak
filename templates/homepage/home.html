@@ -64,7 +64,7 @@
         </div>
       </div>
       <!-- STRESSTEST -->
-      <div class="col-md-4">
+      <!-- <div class="col-md-4">
         <div class="card mb-4 box-shadow">
           <div class="card-body">
             <h4>Stress script</h4>
@@ -81,7 +81,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
       <!-- Switch health check status -->
       <div class="col-md-4">
         <div class="card mb-4 box-shadow">
@@ -98,6 +98,36 @@
                     {{end}}
                     <br>
                     <button type="submit"  name="healthswitch-btn" value="true" class="btn btn-sm btn-outline-secondary">Go</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- stopstart -->
+      <div class="col-md-4">
+        <div class="card mb-4 box-shadow">
+          <div class="card-body">
+            <h4>Scale Enviroment</h4>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <div class="custom-input-file">
+                  <form method="post" action="/awsscaling">
+                    <label for="env" id="env">Ambiente: </label>
+                    <select name="env" id="env">
+                      <option value="dev">Development</option>
+                      <option value="qa">Qa</option>
+                    </select>
+                    <label for="action" id="action">Accion: </label>
+                    <select name="action" id="action">
+                      <option value="start">Start</option>
+                      <option value="stop">Stop</option>
+                    </select>
+                    <input type="text" id="username" name="username" placeholder="Usuario"><br>
+                    <input type="password" id="password" name="password" placeholder="Password"><br>
+                    <br>
+                    <button type="submit"  name="startstop" value="true" class="btn btn-sm btn-outline-secondary">Go</button>
                   </form>
                 </div>
               </div>

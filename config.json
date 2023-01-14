@@ -1,0 +1,48 @@
+{
+  "token": "terraform token",
+  "secretstring": "abc&1*~#^2^#s0^=)^^7aa34",
+  "postgres": {
+    "host": "localhost",
+    "port": 5432,
+    "user": "postgres",
+    "password": "",
+    "dbname": "",
+    "table": ""
+  },
+  "lambda": {
+    "dev": {
+      "ec2_stop": "",
+      "ec2_start": "",
+      "rds_stop": "",
+      "rds_start": "",
+      "asc": ""
+    },
+    "qa": {
+      "ec2_stop": "",
+      "ec2_start": "",
+      "rds_stop": "",
+      "rds_start": "",
+      "asc": "c"
+    }
+  },  
+  "terraform": [
+    {
+      "name": "",
+      "varset": ""
+    },
+    {
+      "name": "",
+      "varset": ""
+    }
+  ],
+  "links": [
+    {
+      "name": "AWS",
+      "href": "https://signin.aws.amazon.com/signin?redirect_uri=https%3A%2F%2Fus-east-1.console.aws.amazon.com%2Fconsole%2Fhome%3FhashArgs%3D%2523%26isauthcode%3Dtrue%26nc2%3Dh_ct%26region%3Dus-east-1%26skipRegion%3Dtrue%26src%3Dheader-signin%26state%3DhashArgsFromTB_us-east-1_03d526c644b3de2a&client_id=arn%3Aaws%3Asignin%3A%3A%3Aconsole%2Fcanvas&forceMobileApp=0&code_challenge=QMaNY9LpmGGTwCr-qnBBtcO_kU8VGGxP5zlFmNdnEz8&code_challenge_method=SHA-256"
+    },
+    {
+      "name": "Terraform",
+      "href": "https://app.terraform.io/app/agustinlare/workspaces"
+    }
+  ]
+}

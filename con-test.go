@@ -33,14 +33,14 @@ func dnsResolver(s string) (string, error) {
 	}
 
 	var m []string
-	var reply string
+	var resp string
 
 	for _, ip := range ips {
 		m = append(m, ip.String()+", ")
-		reply = strings.TrimLeft(strings.Join(m, ip.String()), ", ")
+		resp = strings.TrimLeft(strings.Join(m, ip.String()), ", ")
 	}
 
-	return reply, nil
+	return resp, nil
 }
 
 func mongodb(uri string) (string, error) {

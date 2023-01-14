@@ -15,7 +15,6 @@ import (
 
 func vtExtract(c *gin.Context) {
 	if c.Request.Method == "GET" {
-		reply(c, true, "GET")
 		c.HTML(
 			http.StatusOK,
 			"views/vt-deploy.html",
@@ -23,11 +22,9 @@ func vtExtract(c *gin.Context) {
 		)
 
 	} else {
-		var resp string
 		var headers gin.H
 		file := os.Getenv("UPLOADED_VT_FILE")
 		path := getFileDir(file)
-		fmt.Println(path)
 		err := extractZipWithPassword(file, c.PostForm("upload_password"))
 
 		if err == nil {
@@ -44,18 +41,17 @@ func vtExtract(c *gin.Context) {
 		}
 
 		if err != nil {
-			reply(c, false, err.Error())
+			Error.Println(err.Error())
 			headers = gin.H{
 				"error": err.Error(),
 			}
 		} else {
-			reply(c, true, resp)
 			headers = gin.H{
 				"messages": "File uploaded " + getFileName(file),
 			}
 		}
 
-		reply(c, true, file)
+		Info.Printf("File uploaded %s", file)
 		c.HTML(
 			http.StatusOK,
 			"views/vt-deploy.html",

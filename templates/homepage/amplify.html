@@ -5,67 +5,80 @@
       <h2>Amplify Environment</h2>
       <br>
       <h4>Select action</h4>
-      {{ if .act_selection }}
-      {{ if eq .act_selection "edit" }}
+      {{ if .act_selected }}
+        {{ if eq .act_selected "edit" }}
       <input type="radio" id="edit" name="action" value="edit" onchange="this.form.submit()" checked>
       <label for="edit">Edit</label>
       <input type="radio" id="new" name="action" value="new" onchange="this.form.submit()">
       <label for="new">New</label>
-      {{ else }}
+        {{ else }}
       <input type="radio" id="edit" name="action" value="edit" onchange="this.form.submit()">
       <label for="edit">Edit</label>
       <input type="radio" id="new" name="action" value="new" onchange="this.form.submit()" checked>
       <label for="new">New</label>
-      {{ end }}
+        {{ end }}
       {{ else }}
       <input type="radio" id="edit" name="action" value="edit" onchange="this.form.submit()">
       <label for="edit">Edit</label>
       <input type="radio" id="new" name="action" value="new" onchange="this.form.submit()">
       <label for="new">New</label>
       {{ end }}
+      {{ if eq .act_selected "edit" }} <!--DIVISOR DE ACCION EDIT -->
       <!-- ENVIROMENT -->
-      <br><br>
-      {{ if ne .act_selection "new" }}
       <h4>Select enviroments</h4>
       <select class="form-select" name="env_selection" aria-label="size 3 select example" onchange="this.form.submit()">
-      {{ if .env }}
+        {{ if .env }}
         <option disabled selected>Select enviroments</option>
         {{ range .env }}
         <option>{{ . }}</option>
         {{ end }}
-      {{ else }}
+        {{ else }}
         <option selected>{{ .env_selected }}</option>
-      {{ end }}
+        {{ end }}
       </select>
       <!-- VARS -->
       <br><br>
       <h4>Select variable</h4>
       <select class="form-select" name="var_selection" aria-label="size 3 select example">
-      {{ if .vars }}
+        {{ if .vars }}
         <option disabled selected>Select variable</option>
-        {{ range .vars }}
+          {{ range .vars }}
         <option>{{ .Attributes.Key }}</option>
-        {{ end }}
-      {{ else }}
-        {{ if .var_selected }}
-        <option selected>{{ .var_selected }}</option>
+          {{ end }}
         {{ else }}
+          {{ if .var_selected }}
+        <option selected>{{ .var_selected }}</option>
+          {{ else }}
         <option disabled selected>Select enviroment first</option>
+          {{ end }}
         {{ end }}
-      {{ end }}
       </select>
-      {{ end }}
-      <!-- INPUT -->
       <br><br>
       <h5>Insert value to update</h4>
       <input type="text" name="var_update">
-      <br>
-      <br>
-      <h5>Service secret</h4>
+      <!-- DIVISOR DE NEW -->
+      {{ else }}
+      <h4>Select enviroments</h4>
+      <select class="form-select" name="env_selection" aria-label="size 3 select example">
+        {{ if .env }}
+        <option disabled selected>Select enviroments</option>
+        {{ range .env }}
+        <option>{{ . }}</option>
+        {{ end }}
+        {{ else }}
+        <option selected>{{ .env_selected }}</option>
+        {{ end }}
+      </select>
+      <br><br>
+      <h4>Insert {"Key" : "Value"} parameters</h4>
+      <input type="text" name="var_name" placeholder="Key"> <input type="text" name="var_value", placeholder="Value">
+      {{ end }}
+      <!-- INPUT -->
+      <br><br>
+      <h5>Secret phrase</h4>
       <input type="text" name="secret">
-      <br>
       <!-- BUTTON -->
-      <br>
+      <br><br>
       <button type="submit" value="true" class="btn btn-primary">Update</button>
       <button type="submit" formmethod="get" class="btn btn-outline-info">Clear filters</button>
       {{ template "layouts/messages.html" .}}
